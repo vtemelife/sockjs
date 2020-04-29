@@ -11,7 +11,7 @@ lint:
 test:
 	flake8 --show-source core
 	isort --check-only -rc core --diff
-	pytest --cov=core --cov-report=term --cov-report=html
+	# pytest --cov=core --cov-report=term --cov-report=html
 
 all: clean lint
 

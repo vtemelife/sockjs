@@ -1,0 +1,27 @@
+name: CI
+on: [create, push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install Dependencies
+      run: |
+        curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.deb.sh | sudo bash
+        sudo apt-get install -y python-coverage rabbitmq-server
+    - name: Install Python dependencies
+      run: |
+        pip install -r requirements/dev.txt
+        pip install codecov
+    - name: Run Tests
+      run: make test
+      env:
+        AMQP_URL: amqp://guest:guest@localhost:5672 # pragma: allowlist secret
+    - name: Coverage Report
+      run: codecov
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
