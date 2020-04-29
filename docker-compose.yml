@@ -1,0 +1,27 @@
+version: "2.1"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.7.14-alpine
+    ports:
+      - "5672:5672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      timeout: 5s
+      interval: 5s
+      retries: 5
+
+  sockjs:
+    build:
+      context: .
+      dockerfile: ./compose/Dockerfile
+    env_file:
+      - ./envsets/env.prod
+    volumes:
+      - .:/app/sockjs
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    command: ./compose/start.sh

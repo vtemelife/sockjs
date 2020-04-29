@@ -1,0 +1,8 @@
+import os
+
+AMQP_URL = os.environ["AMQP_URL"]
+SESSION_LIFE = 7200
+DEBUG = False
+MAX_LINE_SIZE = 8190 * 10
+HOST = "0.0.0.0"
+PORT = 8080
