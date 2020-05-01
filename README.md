@@ -1,6 +1,39 @@
 # Vteme sockjs microservice
 
-## Install system dependencies (Ubuntu / OSX)
+Dev stack:
+* asyncio
+* sockjs
+* rabbitmq
+* redis
+* docker
+
+## Clone repository
+
+Install git on your system https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+```
+git clone git@github.com:vtemelife/sockjs.git
+cd sockjs
+```
+
+## Run using docker
+
+Install docker on your system https://runnable.com/docker/getting-started/
+
+### Activate environment:
+
+```
+cp envsets/docker_dev.env .docker.env
+```
+
+### Build and Run
+
+```
+docker-compose build
+docker-compose up
+```
+
+## Run without docker
 
 ### Install required services (OSX)
 
@@ -29,15 +62,6 @@ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 eval "$(pyenv init -)"
 ```
 
-## Setup environment and run project
-
-### Clone repository and install dependencies
-
-```
-git clone git@github.com:vtemelife/sockjs.git
-cd sockjs
-```
-
 ### Install and activate virtual environment
 
 ```
@@ -51,8 +75,8 @@ source env/bin/activate
 ### Activate environment:
 
 ```
-cp envsets/env.dev .env
-source .env
+cp envsets/local_dev.env .local.env
+source .local.env
 ```
 
 ### Install project requirements:
@@ -61,19 +85,21 @@ source .env
 make install
 ```
 
-## Start dev server:
+### Start dev server:
 
 ```
 make start
 ```
 
-## Run all tests:
+### Run tests:
+
+### Run all tests:
 
 ```
 make test
 ```
 
-## Run one test:
+### Run one test:
 
 ```
 pytest file/path/filename.py::ClassName::test_method

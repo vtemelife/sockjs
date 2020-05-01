@@ -11,12 +11,12 @@ services:
       interval: 5s
       retries: 5
 
-  sockjs:
+  local_sockjs:
     build:
       context: .
       dockerfile: ./compose/Dockerfile
     env_file:
-      - ./envsets/env.prod
+      - .docker.env
     volumes:
       - .:/app/sockjs
     depends_on:
