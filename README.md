@@ -75,8 +75,8 @@ source env/bin/activate
 ### Activate environment:
 
 ```
-cp envsets/local_dev.env .local.env
-source .local.env
+cp envsets/local_dev.env .env
+source .env
 ```
 
 ### Install project requirements:
